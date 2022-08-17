@@ -1,0 +1,15 @@
+.btn-instagram-downloader{
+  width: fit-content;
+  height: fit-content;
+  padding: 8px;
+  margin-right: 8px;
+  padding-right: 0px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  right: -6px;
+}
+
+.btn-instagram-downloader svg:hover{
+  color: #838383 !important;
+}
