@@ -1,5 +1,3 @@
-import main from './main.js';
-
 const filter = {
   url: [
     {
@@ -10,13 +8,13 @@ const filter = {
 
 chrome.webNavigation.onCompleted.addListener((tab) => {
   chrome.scripting.executeScript({
-    target: {tabId: tab.tabId},
-    func: main
+    target: { tabId: tab.tabId },
+    files: ["./main.js"]
   });
-  
+
   chrome.scripting.insertCSS(
     {
-      target: {tabId: tab.tabId},
+      target: { tabId: tab.tabId },
       files: ['./assets/css/inject.css'],
     });
 }, filter)
