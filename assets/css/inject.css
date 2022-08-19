@@ -1,15 +1,51 @@
-.btn-instagram-downloader{
-  width: fit-content;
-  height: fit-content;
-  padding: 8px;
-  margin-right: 8px;
-  padding-right: 0px;
+.btnId {
   display: flex;
-  justify-content: flex-end;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: unset;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  right: -6px;
+  margin-left: 12px;
+  cursor: pointer;
 }
 
-.btn-instagram-downloader svg:hover{
-  color: #838383 !important;
+.btnId svg:hover {
+  color: #838383;
+}
+
+.btnId-process::before {
+  content: '';
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #5151f0;
+  animation: spinner1 2s linear infinite;
+}
+
+.btnId-complet{
+  user-select: none !important;
+  cursor: default !important;
+  color: #9f9f9f;
+}
+
+.btnId-complet svg{
+  stroke: #9f9f9f;
+}
+
+.btnId-complet svg:hover{
+  color: #9f9f9f;
+}
+
+@keyframes spinner1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

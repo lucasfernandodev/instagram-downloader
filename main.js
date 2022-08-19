@@ -8,12 +8,10 @@
   (document.head || document.documentElement).appendChild(s);
 
 
-  function buttonDownload(link = "#") {
+  function buttonDownload(link = "#", id, func) {
     return (
       `
-      <button onclick="donwloader('${link}')" 
-      
-      style="background: unset; border: unset;" class="btn-instagram-downloader">
+      <button onclick="donwloader('${link}', '${id}')" class="btnId" data-id="${id}">
        <span target="_blank" href="${link}" style="text-decoration: none; color: var(--ig-primary-text)" download="vide.mp4">
          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"  stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -69,7 +67,10 @@
             }
 
             if(cardReactions !== null && typeof cardReactions !== 'undefined'){
-              cardReactions.insertAdjacentHTML("beforeend", buttonDownload(await getVideo(fragmentLink)))
+              cardReactions.insertAdjacentHTML(
+                "beforeend",
+                buttonDownload(await getVideo(fragmentLink),  fragmentLink),
+              )
             }else{
               console.log(`[${timer}] Error: CardReactions Invalido.`, cardReactions)
             }
