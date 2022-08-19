@@ -23,7 +23,7 @@
 
     return (
       `
-      <button onclick="${func}" class="btnId" data-id="${url}">
+      <button onclick="${func}" class="btnId" data-id="${shortcode}">
        <span style="text-decoration: none; color: var(--ig-primary-text)">
          ${svgIcon}
        </span>
@@ -42,46 +42,50 @@
     return `${urlVideo}&amp;dl=1`;
   }
 
-
   function getShortCode(cardVideo) {
     const videoLink = cardVideo.getElementsByTagName("time")[0].parentNode.parentNode.href;
     const fragmentLink = videoLink.replace("https://www.instagram.com/", "").split("/")[1];
     return fragmentLink;
   }
 
-  async function debounce() {
+  async function bindButtonToCard(cardVideo) {
+    const shortcode = getShortCode(cardVideo);
+    const linkVideo = await getVideo(shortcode);
+    const cardReactions = cardVideo.getElementsByTagName("section")[0];
 
-    clearTimeout(timer);
-
-    timer = setTimeout(() => {
-      const cardsVideos = document.getElementsByClassName("_aato _ab1k _ab1l") || [];
-
-      if (cardsVideos !== [] && cardsVideos.length > 0) {
-
-        Array.from(cardsVideos).forEach(async card => {
-
-          const cardVideo = card.parentNode.parentNode.parentNode.parentNode;
-
-          if (!cardVideo.classList.contains("card_registred")) {
-
-            cardVideo.classList.add("card_registred");
-
-            const shortcode = getShortCode(cardVideo);
-            const linkVideo = await getVideo(shortcode);
-            const cardReactions = cardVideo.getElementsByTagName("section")[0];
-
-            if (cardReactions !== null && typeof cardReactions !== 'undefined') {
-              cardReactions.insertAdjacentHTML("beforeend", buttonDownload(linkVideo, shortcode))
-            }
-          }
-        });
-
-        clearTimeout(timer);
-      } else {
-        clearTimeout(timer);
-      }
-    }, 500)
+    if (cardReactions !== null && typeof cardReactions !== 'undefined') {
+      cardReactions.insertAdjacentHTML("beforeend", buttonDownload(linkVideo, shortcode))
+    }
   }
 
+  async function debounce() {
+    clearTimeout(timer);
+    timer = setTimeout(() => main(), 800)
+  }
+
+  function main() {
+    const cardsVideos = document.getElementsByClassName("_aato _ab1k _ab1l") || [];
+
+    if (cardsVideos !== [] && cardsVideos.length > 0) {
+
+      Array.from(cardsVideos).forEach(async card => {
+
+        const cardVideo = card.parentNode.parentNode.parentNode.parentNode;
+
+        if (!cardVideo.classList.contains("card_registred")) {
+
+          cardVideo.classList.add("card_registred");
+          await bindButtonToCard(cardVideo)
+
+        }
+      });
+
+      clearTimeout(timer);
+    } else {
+      clearTimeout(timer);
+    }
+  }
+
+  main()
 })();
 
