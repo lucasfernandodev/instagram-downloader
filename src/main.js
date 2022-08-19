@@ -60,12 +60,12 @@
 
   async function debounce() {
     clearTimeout(timer);
-    timer = setTimeout(() => main(), 800)
+    timer = setTimeout(() => main(), 500)
   }
 
   function main() {
     const cardsVideos = document.getElementsByClassName("_aato _ab1k _ab1l") || [];
-
+    console.log("cards encontrados", cardsVideos.length)
     if (cardsVideos !== [] && cardsVideos.length > 0) {
 
       Array.from(cardsVideos).forEach(async card => {
@@ -86,6 +86,6 @@
     }
   }
 
-  setTimeout(() => main(), 1000)
+  window.onload = main();
 })();
 
