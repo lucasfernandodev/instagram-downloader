@@ -2,4 +2,4 @@
 
 # instagram video downloader
 
-Plugin open source que permite baixar videos do instagram.
+Extensão de código aberto, permite baixar videos do instagram.
