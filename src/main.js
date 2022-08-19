@@ -10,7 +10,7 @@
   s.setAttribute("as", "script");
   s.setAttribute("rel", "preload");
   s.setAttribute("crossorigin", "anonymous")
-  s.src = chrome.runtime.getURL('donwload.js');
+  s.src = chrome.runtime.getURL('src/downloadFile.js');
   (document.head || document.documentElement).appendChild(s);
 
   // Button video download
@@ -86,6 +86,6 @@
     }
   }
 
-  main()
+  setTimeout(() => main(), 1000)
 })();
 

@@ -9,7 +9,7 @@ const filter = {
 chrome.webNavigation.onCompleted.addListener((tab) => {
   chrome.scripting.executeScript({
     target: { tabId: tab.tabId },
-    files: ["./main.js"]
+    files: ["./src/main.js"]
   });
 
   chrome.scripting.insertCSS(
