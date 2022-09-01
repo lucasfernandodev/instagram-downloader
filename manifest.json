@@ -23,7 +23,7 @@
     "default_popup": "./popup.html"
   },
   "web_accessible_resources": [{
-    "resources": ["src/downloadFile.js"],
+    "resources": ["src/modules/*.js", "src/utils/downloadFile.js"],
     "matches": ["<all_urls>"]
   }],
   "manifest_version": 3

@@ -1,5 +1,4 @@
-async function donwloader(url, videoId) {
-
+async function _downloadFile(url, videoId) {
   const buttonDonwload = document.querySelector(`[data-id="${videoId}"]`);
 
   const btnAnimate = {
